@@ -39,5 +39,8 @@ backend/db.json
 Thumbs.db
 desktop.ini
 
+# ─── AI Agent Context ─────────────────────────────────────────────────────────
+agents.md
+
 # ─── Artifacts / Plans (Gemini agent) ─────────────────────────────────────────
 implementation_plan.md
