@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}DiagnostiX — Diagnostic Report{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/components/report.css') }}?v=7">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Patient Details Modal -->
+<div id="patient-modal" class="patient-modal-overlay">
+    <div class="patient-modal-content glass-panel-strong">
+        <h3>Patient Information</h3>
+        <p>Please enter the patient details for this report. If you skip this step, the report will be generated but will be missing patient identifiers and <strong>cannot be downloaded as PDF</strong>.</p>
+        
+        <form id="patient-form">
+            <div class="form-group">
+                <label for="p-id">Patient ID</label>
+                <input type="text" id="p-id" placeholder="e.g. PT-10394">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="p-age">Age</label>
+                    <input type="number" id="p-age" placeholder="e.g. 45" min="0" max="120">
+                </div>
+                <div class="form-group">
+                    <label for="p-gender">Gender</label>
+                    <select id="p-gender">
+                        <option value="">Select...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="p-scan">Scan Type (File Ext)</label>
+                <input type="text" id="p-scan" disabled placeholder="e.g. JPG, DCM">
+            </div>
+            <div class="form-group">
+                <label for="p-condition">Previous Condition (if any)</label>
+                <textarea id="p-condition" rows="2" placeholder="e.g. Chronic cough, Asthma, Diabetes..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" id="modal-skip-btn" class="btn btn-secondary">Skip & Generate</button>
+                <button type="submit" id="modal-submit-btn" class="btn btn-primary">Save & Generate</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="report-toolbar">
+    <button class="btn btn-secondary" id="download-pdf-btn" disabled>
+        <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Download PDF
+    </button>
+</div>
+
+<article class="report glass-panel-strong" id="pdf-report-content">
+
+    <!-- Header -->
+    <header class="report-header">
+            <div class="report-brand">
+                <img src="{{ url_for('static', path='img/favicon.png') }}" class="report-logo" alt="Logo">
+                DiagnostiX Report
+            </div>
+            <p class="report-subtitle">AI-Assisted Diagnostic Summary</p>
+        <div class="report-meta">
+            <p><strong>Date:</strong> <span id="current-date"></span></p>
+            <p><strong>Report ID:</strong> <span id="report-id-span"></span></p>
+        </div>
+    </header>
+
+    <hr class="divider">
+
+    <!-- Patient Info -->
+    <section class="patient-grid">
+        <div class="info-cell">
+            <span class="info-label">Patient ID</span>
+            <span class="info-value" id="display-id">—</span>
+        </div>
+        <div class="info-cell">
+            <span class="info-label">Age / Gender</span>
+            <span class="info-value" id="display-age-gender">—</span>
+        </div>
+        <div class="info-cell">
+            <span class="info-label">Scan Type</span>
+            <span class="info-value" id="display-scan">—</span>
+        </div>
+        <div class="info-cell">
+            <span class="info-label">Medical History</span>
+            <span class="info-value" id="display-condition">—</span>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Body -->
+    <section class="report-body">
+        <div class="scan-column">
+            <h4>Reference Scan</h4>
+            <img src="" alt="Reference Scan" class="reference-image" style="display: none;">
+        </div>
+
+        <div class="findings-column">
+            <h4>Findings Summary</h4>
+            <p id="loading-findings-text" style="display: none;">Generating comprehensive AI report... Please wait (~10-15s).</p>
+            <div id="findings-container"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+        <p class="disclaimer">⚠️ <strong>Disclaimer:</strong> This AI-generated report is intended as a clinical decision-support tool. It does not replace the judgment of a licensed interpreting physician. Clinical correlation is always required.</p>
+        <div class="signature-block">
+            <div class="signature-line"></div>
+            <p>Reviewing Physician Signature</p>
+        </div>
+    </footer>
+</article>
+
+<script src="{{ url_for('static', path='js/components/report.js') }}?v=7"></script>
+{% endblock %}

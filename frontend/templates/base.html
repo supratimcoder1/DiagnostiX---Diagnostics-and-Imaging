@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DiagnostiX — AI-powered medical imaging diagnostics platform for instant, accurate analysis.">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', path='img/favicon.png') }}" type="image/x-icon">
+    <title>{% block title %}DiagnostiX — AI Medical Imaging{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/base.css') }}?v=7">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/components/navbar.css') }}?v=7">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Dynamic AI Diagnostics Background -->
+    <canvas id="medical-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">
+                <img src="{{ url_for('static', path='img/favicon.png') }}" class="brand-logo" alt="DiagnostiX Logo">
+                DiagnostiX
+            </a>
+            <ul class="navbar-links">
+                <li><a href="/" class="{% if request.url.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="/diagnostics" class="{% if request.url.path == '/diagnostics' %}active{% endif %}">Diagnostics</a></li>
+                <li><a href="/report" class="{% if request.url.path == '/report' %}active{% endif %}">Reports</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer container glass-panel">
+        <div class="footer-inner">
+            <div class="footer-logo-wrapper">
+                <img src="{{ url_for('static', path='img/favicon.png') }}" class="footer-logo" alt="Logo">
+                <p>&copy; 2026 DiagnostiX. All rights reserved.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+    <!-- Dazzling Diagnostic Background Script -->
+    <script src="{{ url_for('static', path='js/medical-mesh.js') }}?v=7"></script>
+</body>
+</html>

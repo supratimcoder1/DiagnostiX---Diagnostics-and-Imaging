@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}DiagnostiX — Upload Medical Scan{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/components/upload.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <span class="badge badge-primary badge-glow">AI-Powered Diagnostics</span>
+    <h1>Instant AI Analysis for Medical Imaging</h1>
+    <p>Upload your X-Ray, MRI, or CT scan and receive comprehensive, AI-driven preliminary diagnostics in seconds.</p>
+</section>
+
+<!-- Upload Card -->
+<section class="upload-section">
+    <div class="upload-container">
+        <!-- The Brilliant White Pane -->
+        <div class="upload-area" id="drop-zone">
+            <div class="upload-icon-wrapper">
+                <div class="upload-icon-bg"></div>
+                <!-- Crisp Cloud Up-arrow Icon -->
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+            </div>
+            <h3>Drop your medical scan here</h3>
+            <p>or <span class="upload-link">click to browse</span> from your computer</p>
+            <p class="file-hints">JPEG · PNG · DICOM — Max 50 MB</p>
+            <input type="file" id="file-input" hidden accept="image/*,.dcm">
+
+            <!-- Preview -->
+            <div class="preview-container" id="preview-container" style="display: none;">
+                <img id="image-preview" src="" alt="Scan Preview">
+                <div class="file-details">
+                    <span id="file-name">filename.jpg</span>
+                    <button type="button" class="btn-icon" id="remove-file" title="Remove file">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detached Generate Button -->
+        <div class="upload-actions">
+            <a href="/diagnostics" class="btn generate-btn disabled" id="generate-btn">
+                Generate Diagnostics
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+    <div class="features-grid">
+        <div class="feature-card glass-panel">
+            <div class="feature-icon">🔬</div>
+            <h4>Multi-Modal Imaging</h4>
+            <p>Supports X-Ray, MRI, CT scan, and DICOM formats with automatic preprocessing.</p>
+        </div>
+        <div class="feature-card glass-panel">
+            <div class="feature-icon">⚡</div>
+            <h4>Real-Time Analysis</h4>
+            <p>State-of-the-art vision models deliver results in under 10 seconds.</p>
+        </div>
+        <div class="feature-card glass-panel">
+            <div class="feature-icon">📋</div>
+            <h4>Clinical Reports</h4>
+            <p>Auto-generated, print-ready reports with confidence scoring and findings.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', path='js/components/upload.js') }}?v=2"></script>
+{% endblock %}

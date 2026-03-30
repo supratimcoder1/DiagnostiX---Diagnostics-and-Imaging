@@ -1,0 +1,184 @@
+/* ============================================================
+   report.css — Beautiful Blue Diagnostic Report
+   ============================================================ */
+.report-toolbar { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
+.report { max-width: 900px; margin: 0 auto 4rem; padding: 3rem; }
+.report-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.report-brand { 
+    font-size: 1.75rem; 
+    font-weight: 800; 
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.report-subtitle { font-size: 0.9375rem; color: var(--color-text-secondary); font-weight: 700; }
+.report-meta { text-align: right; }
+.report-meta p { font-size: 0.8125rem; color: var(--color-text-muted); margin-bottom: 0.25rem; font-weight: 600; }
+
+.divider { border: 0; height: 2px; background: rgba(255,255,255,0.2); margin: 1.5rem 0; box-shadow: 0 1px 0 rgba(2, 132, 199, 0.05); }
+
+.patient-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.15); border-radius: var(--radius-md); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.05); }
+.info-label { display: block; font-size: 0.6875rem; text-transform: uppercase; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+.info-value { display: block; font-weight: 700; font-size: 0.9375rem; color: var(--color-text-main); }
+
+.report-body { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; margin: 2rem 0; }
+.scan-column h4, .findings-column h4 { font-size: 1.25rem; font-weight: 800; padding-bottom: 0.75rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(255,255,255,0.7); color: var(--color-primary-dark); }
+.reference-image { width: 100%; border-radius: var(--radius-md); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.15); border: 4px solid #ffffff; }
+
+.report-finding { 
+    padding: 1.25rem; 
+    border-radius: var(--radius-md); 
+    margin-bottom: 1rem; 
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    background: rgba(255, 255, 255, 0.1); 
+    border-left: 5px solid #cbd5e1; 
+    box-shadow: 0 8px 30px rgba(2, 132, 199, 0.05); 
+    transition: var(--transition-smooth); 
+}
+.report-finding:hover { 
+    background: rgba(255, 255, 255, 0.25); 
+    transform: translateY(-2px); 
+    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.1); 
+    border-color: rgba(255, 255, 255, 0.6);
+}
+.report-finding.danger { border-left-color: var(--color-danger); }
+.report-finding.warning { border-left-color: var(--color-warning); }
+.report-finding.success { border-left-color: var(--color-success); }
+.finding-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+
+.report-finding h5 { font-size: 1rem; font-weight: 700; margin-bottom: 0.375rem; color: var(--color-text-main); }
+.report-finding p { font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: 0; line-height: 1.6; font-weight: 500; }
+
+/* ── Collapsible Description Toggle ───────────────────────────────────────── */
+.description-wrapper { position: relative; }
+.desc-toggle {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.desc-toggle:hover {
+    background: rgba(14, 165, 233, 0.2);
+    border-color: rgba(14, 165, 233, 0.5);
+    color: var(--color-primary-dark);
+}
+
+.report-footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 2px dashed rgba(255,255,255,0.7); }
+.disclaimer { font-size: 0.75rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 2rem; padding: 1rem; background: #fef3c7; border-radius: var(--radius-sm); border: 1px solid #fde68a; font-weight: 500; }
+
+.signature-block { width: 240px; margin-left: auto; text-align: center; }
+.signature-line { height: 2px; background: var(--color-primary-light); margin-bottom: 0.5rem; }
+.signature-block p { font-size: 0.8125rem; font-weight: 600; color: var(--color-primary-dark); margin-bottom: 0; }
+
+/* ── Patient Modal ──────────────────────────────────────────────────────── */
+.patient-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.patient-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.patient-modal-content {
+    background: var(--glass-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    max-width: 500px;
+    width: 90%;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.patient-modal-overlay.active .patient-modal-content {
+    transform: translateY(0);
+}
+.patient-modal-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+.patient-modal-content p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+.form-group {
+    margin-bottom: 1.25rem;
+}
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+.form-row .form-group {
+    flex: 1;
+}
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.9375rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+select {
+    color: #000;
+    background: #fff;
+}
+select option {
+    color: #000;
+    background: #fff;
+}
+input:focus, select:focus {
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.2);
+}
+select:focus {
+    background: #fff;
+}
+input:disabled {
+    background: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+    color: rgba(255, 255, 255, 0.5);
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+@media print { body { background: none; } .navbar, .footer, .report-toolbar { display: none !important; } .report { box-shadow: none; border: none; padding: 0; max-width: 100%; backdrop-filter: none; background: white !important; } .report-finding { break-inside: avoid; } }

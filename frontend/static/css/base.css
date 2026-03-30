@@ -1,0 +1,213 @@
+/* ============================================================
+   base.css — DiagnostiX Design System
+   Sleek Light Blue Glassmorphism Theme
+   ============================================================ */
+:root {
+    --color-primary: #0284c7;       /* Vivid Sky Blue */
+    --color-primary-dark: #0369a1;  /* Deep Sky Blue */
+    --color-primary-light: #38bdf8; /* Light Sky Blue */
+    --color-accent: #0ea5e9;        /* Bright Cyan-Blue */
+    
+    --color-text-main: #0f172a;     /* Stark Contrast Dark */
+    --color-text-secondary: #334155;
+    --color-text-muted: #64748b;    
+
+    --color-success: #10b981;       /* Emerald Green */
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+
+    /* Flawless Glass Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.15); /* Significantly increased transparency */
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-highlight: rgba(255, 255, 255, 0.8); /* Brilliant edge highlight */
+    --glass-shadow: 0 10px 40px rgba(2, 132, 199, 0.12); /* Subtle blue tinted shadow */
+    --glass-shadow-hover: 0 16px 50px rgba(2, 132, 199, 0.18);
+    --glass-blur: blur(12px);
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-main: 'Space Grotesk', sans-serif;
+
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Beautiful Light Blue Background */
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Rich, vibrant sky-blue gradient base */
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #bae6fd 100%);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Dazzling Imaging Diagnostics Background */
+#medical-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none; /* Let clicks pass through to the UI */
+    opacity: 0.95;
+}
+
+/* Flawless White Glass Panels */
+.glass-panel, .glass-panel-strong {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur) saturate(140%);
+    -webkit-backdrop-filter: var(--glass-blur) saturate(140%);
+    border: 1px solid var(--glass-border);
+    border-top: 2px solid var(--glass-highlight);
+    border-left: 2px solid var(--glass-highlight);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-smooth);
+}
+
+.glass-panel-strong {
+    border-radius: var(--radius-xl);
+}
+
+.glass-panel:hover, .glass-panel-strong:hover {
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* Layout Elements */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; width: 100%; }
+.main-content { flex-grow: 1; display: flex; flex-direction: column; padding: 3rem 0; z-index: 10; }
+
+/* Typography (Enhanced with Beautiful Blue Shine) */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 800; color: var(--color-text-main); letter-spacing: -0.03em; line-height: 1.15; }
+h1, h2 { 
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+h1 { font-size: 3.5rem; margin-bottom: 1.25rem; }
+h2 { font-size: 2.75rem; margin-bottom: 1rem; }
+h3 { font-size: 1.75rem; margin-bottom: 0.75rem; }
+p { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 1.25rem; font-weight: 500; }
+
+/* Beautiful Solid Gradient Buttons */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem; font-weight: 700; font-size: 1rem;
+    border-radius: 100px; /* Pill shape for sleekness */
+    cursor: pointer; transition: var(--transition-smooth); text-decoration: none;
+    font-family: var(--font-main); white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+    color: #ffffff;
+    border: 1px solid #7dd3fc;
+    border-top: 1px solid #ffffff;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    box-shadow: 0 12px 30px rgba(2, 132, 199, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid #ffffff;
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.1);
+}
+
+.btn-secondary:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-large { padding: 1.125rem 2.5rem; font-size: 1.125rem; }
+
+/* Badge */
+.badge {
+    display: inline-flex; align-items: center; padding: 0.35rem 1rem; border-radius: 100px;
+    font-size: 0.8125rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.badge-primary {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); 
+    border: 1px solid #7dd3fc; 
+    color: var(--color-primary-dark); 
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.1);
+}
+
+.badge-glow {
+    background: #ffffff;
+    color: var(--color-primary-dark);
+    border: 1px solid #7dd3fc;
+    /* High-contrast double-layer glow */
+    box-shadow: 
+        0 0 10px rgba(14, 165, 233, 0.3),  /* Static soft blue base */
+        0 0 20px rgba(255, 255, 255, 0.8);  /* Inner white glow */
+    animation: badge-glow-pulse 2.5s infinite ease-in-out;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+}
+
+@keyframes badge-glow-pulse {
+    0% { 
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.3), 0 0 20px rgba(255, 255, 255, 0.6);
+        transform: scale(1); 
+    }
+    50% { 
+        /* Massive residual blue-white halo */
+        box-shadow: 
+            0 0 30px rgba(14, 165, 233, 0.6), 
+            0 0 60px rgba(255, 255, 255, 1),
+            0 0 100px rgba(14, 165, 233, 0.4);
+        transform: scale(1.05); 
+    }
+    100% { 
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.3), 0 0 20px rgba(255, 255, 255, 0.6);
+        transform: scale(1); 
+    }
+}
+
+.section-header, .hero { 
+    text-align: center; 
+    max-width: 900px; 
+    margin: 0 auto 4rem; 
+    padding: 4rem 0 3rem;
+    animation: fadeInDown 0.8s cubic-bezier(0.25, 1, 0.3, 1); 
+}
+
+.section-header p, .hero p { 
+    font-size: 1.25rem; 
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer { padding: 1rem 2rem; margin-bottom: 2rem; border-radius: 100px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shadow); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer p { margin: 0; font-size: 0.875rem; font-weight: 600; }
+.footer-links { list-style: none; display: flex; gap: 1.5rem; }
+.footer-links a { text-decoration: none; color: var(--color-text-main); font-weight: 600; font-size: 0.875rem; transition: var(--transition-smooth); }
+.footer-links a:hover { color: var(--color-primary); }
+
+/* Logo Styling */
+.brand-logo { height: 32px; width: 32px; border-radius: 50%; object-fit: cover; }
+.footer-logo-wrapper { display: flex; align-items: center; gap: 0.75rem; }
+.footer-logo { height: 24px; width: 24px; border-radius: 50%; opacity: 0.8; }
+.report-logo { height: 32px; width: 32px; border-radius: 50%; vertical-align: middle; margin-right: 0.5rem; }

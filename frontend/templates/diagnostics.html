@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}DiagnostiX — AI Analysis{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/components/diagnostics.css') }}?v=7">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <span class="badge badge-primary badge-glow">AI Engine Active</span>
+    <h2>Diagnostic Analysis</h2>
+    <p>Our vision model is scanning and interpreting the uploaded image for anomalies.</p>
+</section>
+
+<div class="diagnostics-container">
+    <!-- Analysis Header & Scanner Section (Stays on top) -->
+    <div class="scanner-status-stack">
+        <!-- Image Panel -->
+        <div class="scan-panel glass-panel-strong">
+            <div class="scan-wrapper">
+                <img id="scanned-image" alt="Patient Scan" class="scan-image">
+                <div class="scan-overlay" id="scan-overlay"></div>
+                <div class="scanner-line" id="scanner-line"></div>
+            </div>
+            <div class="scan-meta glass-panel">
+                <span>🖼️ <span id="scan-filename">Patient Scan</span></span>
+                <span class="scan-meta-tag computing" id="scan-status-tag">
+                    <svg class="icon-sm diag-loader" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="10 30" stroke-linecap="round" />
+                        <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2" opacity="0.3" />
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                    <span id="scan-status-text">Processing</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Processing Status (Visible below scanner during analysis) -->
+        <div class="processing-status-panel glass-panel" id="processing-status-panel">
+            <div class="status-indicator">
+                <span class="pulse warning" id="status-pulse"></span>
+                <span id="status-text">Analyzing scan…</span>
+            </div>
+            <!-- Progress bar -->
+            <div class="progress-track" style="margin-top: 1rem;">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Drawer -> Uses grid animation for smooth rollout -->
+    <div class="rollout-drawer" id="results-rollout-drawer">
+        <div class="results-panel glass-panel-strong" id="results-panel">
+            <div class="findings-list" id="findings-list" style="opacity: 0;">
+                <h3>Detected Findings</h3>
+                <ul class="anomalies">
+                    <!-- Findings will be injected here -->
+                </ul>
+            </div>
+
+            <div class="panel-actions" style="margin-top: 2rem;">
+                <a href="javascript:void(0)" class="btn btn-primary disabled" id="report-btn">
+                    View Full Report
+                    <svg class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', path='js/components/diagnostics.js') }}?v=7"></script>
+{% endblock %}

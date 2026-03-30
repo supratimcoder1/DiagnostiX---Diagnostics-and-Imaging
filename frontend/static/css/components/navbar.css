@@ -1,0 +1,32 @@
+/* ============================================================
+   navbar.css — Brilliant White Glass Navbar
+   ============================================================ */
+.navbar {
+    position: sticky; top: 1.5rem; z-index: 100; margin: 1.5rem auto 0; max-width: 1200px;
+    border-radius: 100px; padding: 0.75rem 2rem;
+    background: rgba(255, 255, 255, 0.15); /* More transparent */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-top: 2px solid #ffffff;
+    box-shadow: 0 10px 35px rgba(2, 132, 199, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.navbar:hover { background: rgba(255, 255, 255, 0.8); box-shadow: 0 12px 45px rgba(2, 132, 199, 0.2); }
+
+.navbar-container { display: flex; justify-content: space-between; align-items: center; }
+.navbar-brand { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-primary-dark); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -0.02em; margin-right: 2rem; }
+.brand-icon { font-size: 1.5rem; }
+
+.navbar-links { list-style: none; display: flex; gap: 0.5rem; }
+.navbar-links a { text-decoration: none; color: var(--color-text-main); font-weight: 600; font-size: 0.9375rem; padding: 0.625rem 1.25rem; border-radius: 100px; transition: var(--transition-smooth); border: 1px solid transparent; }
+.navbar-links a:hover { background: #8bc9e8; color: var(--color-primary-dark); border: 1px solid #ffffff; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2); }
+
+/* Active Indicator */
+.navbar-links a.active {
+    background: linear-gradient(135deg, #cbe4f6 0%, #8bc9e8 100%);
+    color: var(--color-primary-dark);
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);
+}

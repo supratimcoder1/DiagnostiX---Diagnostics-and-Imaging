@@ -1,0 +1,123 @@
+/* ============================================================
+   upload.css — Flawless Interactive Upload Package
+   ============================================================ */
+
+.hero > p { color: var(--color-text-secondary); }
+
+.upload-section { 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 4rem; 
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.3, 1) 0.2s both; 
+}
+.upload-container { 
+    max-width: 720px; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 3rem; 
+    align-items: center; 
+}
+
+/* The Flawless Transparent Glass Pane */
+.upload-area {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Highly translucent */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 5rem 3rem; 
+    text-align: center; 
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(2, 132, 199, 0.08);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+}
+
+/* Unified Hover Package */
+.upload-area:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(2, 132, 199, 0.15); /* Shadow blooms */
+}
+.upload-area:hover .upload-icon-wrapper {
+    transform: scale(1.08); /* Icon circle expands */
+}
+.upload-area:hover .upload-link { 
+    border-bottom-color: #0284c7; 
+}
+
+/* Drag Over State */
+.upload-area.drag-over {
+    background: rgba(240, 249, 255, 0.3); /* Transparent soft medical blue tint */
+    border-color: #38bdf8; 
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px rgba(2, 132, 199, 0.2);
+}
+
+/* Idle Float Animation for Icon */
+@keyframes floatIcon {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0px); }
+}
+
+.upload-icon-wrapper { 
+    position: relative; 
+    width: 90px; height: 90px; 
+    margin: 0 auto 2rem; 
+    animation: floatIcon 4s ease-in-out infinite; 
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.3, 1); 
+}
+.upload-icon-bg {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: #e0f2fe; /* Soft solid light blue circle */
+    box-shadow: 0 8px 25px rgba(2,132,199,0.1);
+}
+.upload-icon { 
+    position: relative; width: 90px; height: 90px; padding: 24px; 
+    color: #0369a1; /* Crisp dark blue */
+}
+
+/* Typography matching reference image */
+.upload-area h3 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #0f172a; font-weight: 800; letter-spacing: -0.02em; }
+.upload-area > p { font-size: 1.1rem; color: #334155; margin-bottom: 0; font-weight: 500; }
+.upload-link { color: #0ea5e9; font-weight: 700; text-decoration: none; border-bottom: 2px solid #bae6fd; transition: var(--transition-smooth); }
+.file-hints { font-size: 0.875rem; color: #64748b; margin-top: 1.5rem !important; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* In-pane file preview styling */
+.preview-container { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; animation: fadeIn 0.4s ease; position: relative; z-index: 10; }
+#image-preview { max-width: 100%; max-height: 320px; border-radius: var(--radius-md); box-shadow: 0 15px 50px rgba(2, 132, 199, 0.15); border: 2px solid #e0f2fe; }
+.file-details { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem 0.75rem 1.25rem; border-radius: 100px; background: #f0f9ff; border: 1px solid #bae6fd; }
+#file-name { font-weight: 600; font-size: 0.9375rem; color: #0369a1; }
+.btn-icon { width: 32px; height: 32px; border-radius: 50%; border: none; background: #fee2e2; color: #ef4444; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; }
+.btn-icon:hover { background: #fecaca; transform: scale(1.1); }
+
+/* Detached Action Button */
+.upload-actions { display: flex; justify-content: center; }
+.generate-btn {
+    padding: 1.125rem 3.5rem;
+    font-size: 1.125rem;
+    font-weight: 800;
+    border-radius: 50px; /* Big smooth pill */
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.3);
+    border: none;
+    color: white;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+    letter-spacing: -0.01em;
+}
+.generate-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 50px rgba(2, 132, 199, 0.45);
+    background: linear-gradient(135deg, #38bdf8 0%, #0369a1 100%);
+}
+
+/* Features Grid */
+.features { margin-bottom: 4rem; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+.feature-card { padding: 2.5rem 2rem; text-align: center; }
+.feature-card:hover { transform: translateY(-5px); }
+.feature-icon { font-size: 2rem; width: 72px; height: 72px; border-radius: 50%; background: #ffffff; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(2,132,199,0.1); }
+.feature-card h4 { font-size: 1.25rem; font-family: var(--font-heading); font-weight: 800; margin-bottom: 0.75rem; color: #0284c7; }
+.feature-card p { font-size: 0.9375rem; color: var(--color-text-secondary); font-weight: 500; }
