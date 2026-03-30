@@ -168,5 +168,5 @@ Create `backend/.env` using [`backend/.env.example`](backend/.env.example) as a 
 ---
 
 <p align="center">
-  Built with ❤️ for <strong>HACK-O-NIT 2026 AI Summit</strong>
+  Built with ❤️ by <strong>Team AlphaZero</strong>
 </p>
